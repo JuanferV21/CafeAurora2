@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Café Aurora Brand Colors - Light Mode */
+    --brand: 18 36 22; /* #6B3E2E in HSL */
+    --brand-secondary: 30 25 94; /* #F5EDE6 */
+    --brand-accent: 174 68 44; /* #2BB5A3 */
+    --brand-ink: 0 0 10; /* #1A1A1A */
+
+    /* shadcn/ui Variables - Light Mode */
+    --background: 0 0 98; /* #FAFAFA */
+    --foreground: 0 0 10; /* #1A1A1A */
+    --card: 0 0 100;
+    --card-foreground: 0 0 10;
+    --popover: 0 0 100;
+    --popover-foreground: 0 0 10;
+    --primary: 18 36 22; /* Aurora Coffee */
+    --primary-foreground: 30 25 94;
+    --secondary: 30 25 94; /* Crema */
+    --secondary-foreground: 18 36 22;
+    --muted: 220 13 91; /* #E5E7EB */
+    --muted-foreground: 220 9 46;
+    --accent: 174 68 44; /* Jade */
+    --accent-foreground: 0 0 98;
+    --destructive: 0 84 60;
+    --destructive-foreground: 0 0 98;
+    --border: 220 13 91;
+    --input: 220 13 91;
+    --ring: 18 36 22;
+    --radius: 1rem;
+  }
+
+  .dark {
+    /* Café Aurora Brand Colors - Dark Mode */
+    --brand: 18 33 25; /* #5A3225 */
+    --brand-secondary: 20 14 9; /* #1B1715 */
+    --brand-accent: 174 65 32; /* #219183 */
+    --brand-ink: 0 0 93; /* #EDEDED */
+
+    /* shadcn/ui Variables - Dark Mode */
+    --background: 222 47 11; /* #111827 */
+    --foreground: 0 0 93;
+    --card: 222 47 11;
+    --card-foreground: 0 0 93;
+    --popover: 222 47 11;
+    --popover-foreground: 0 0 93;
+    --primary: 18 33 25;
+    --primary-foreground: 0 0 93;
+    --secondary: 20 14 9;
+    --secondary-foreground: 0 0 93;
+    --muted: 217 33 17;
+    --muted-foreground: 215 20 65;
+    --accent: 174 65 32;
+    --accent-foreground: 0 0 93;
+    --destructive: 0 63 31;
+    --destructive-foreground: 0 0 93;
+    --border: 217 33 17;
+    --input: 217 33 17;
+    --ring: 174 65 32;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Smooth scrolling with reduced motion support */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Focus visible styles for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
+
+  /* Skip to content link */
+  .skip-to-content {
+    @apply absolute -top-10 left-4 z-50 bg-background px-4 py-2 text-foreground transition-all focus:top-4;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+  }
+}
