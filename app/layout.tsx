@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { CartProvider } from "@/lib/context/cart-context";
+import { WishlistProvider } from "@/lib/context/wishlist-context";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -92,10 +93,12 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
       <body className="antialiased">
-        <CartProvider>
-          {children}
-          <Toaster position="top-center" richColors />
-        </CartProvider>
+        <WishlistProvider>
+          <CartProvider>
+            {children}
+            <Toaster position="top-center" richColors />
+          </CartProvider>
+        </WishlistProvider>
       </body>
     </html>
   );
