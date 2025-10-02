@@ -96,7 +96,12 @@ export default function RootLayout({
         <WishlistProvider>
           <CartProvider>
             {children}
-            <Toaster position="top-center" richColors />
+            <Toaster
+              position="top-center"
+              richColors
+              closeButton
+              duration={2000}
+            />
           </CartProvider>
         </WishlistProvider>
       </body>
