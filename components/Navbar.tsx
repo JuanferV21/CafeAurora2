@@ -6,11 +6,17 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Logo } from "@/components/Logo";
+import { CartButton } from "@/components/CartButton";
+import { CartDrawer } from "@/components/CartDrawer";
+import { FavoritesButton } from "@/components/FavoritesButton";
+import { WishlistDrawer } from "@/components/WishlistDrawer";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -67,6 +73,8 @@ export function Navbar() {
             {/* CTA Button */}
             <div className="hidden md:flex items-center gap-3">
               <ThemeToggle />
+              <FavoritesButton onClick={() => setIsWishlistOpen(true)} />
+              <CartButton onClick={() => setIsCartOpen(true)} />
               <Button asChild size="lg">
                 <a href="#productos">Comprar granos</a>
               </Button>
@@ -75,6 +83,8 @@ export function Navbar() {
             {/* Mobile Actions */}
             <div className="md:hidden flex items-center gap-2">
               <ThemeToggle />
+              <FavoritesButton onClick={() => setIsWishlistOpen(true)} />
+              <CartButton onClick={() => setIsCartOpen(true)} />
               <button
                 className="p-2 text-foreground hover:bg-muted rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -150,6 +160,12 @@ export function Navbar() {
       >
         Saltar al contenido principal
       </a>
+
+      {/* Cart Drawer */}
+      <CartDrawer open={isCartOpen} onOpenChange={setIsCartOpen} />
+
+      {/* Wishlist Drawer */}
+      <WishlistDrawer open={isWishlistOpen} onOpenChange={setIsWishlistOpen} />
     </>
   );
 }
