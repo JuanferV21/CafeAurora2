@@ -38,18 +38,24 @@ export function Locations() {
           className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto"
         >
           {locations.map((location) => (
-            <motion.div key={location.id} variants={fadeIn}>
-              <Card className="h-full overflow-hidden border-2 hover:border-accent/50 hover:shadow-xl transition-all">
+            <motion.div
+              key={location.id}
+              variants={fadeIn}
+              whileHover={{ y: -8, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2, type: "spring", stiffness: 300 }}
+            >
+              <Card className="h-full overflow-hidden border-2 hover:border-accent/50 hover:shadow-xl transition-all group cursor-pointer">
                 {/* Location Image/Map */}
-                <div className="relative h-48 bg-muted">
+                <div className="relative h-48 bg-muted overflow-hidden">
                   <Image
                     src={location.image}
                     alt={`Cafetería ${location.name}`}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-black/70 transition-all duration-300" />
                   <div className="absolute bottom-4 left-4 right-4">
                     <h3 className="text-2xl font-serif font-bold text-white mb-1">
                       {location.name}

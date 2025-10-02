@@ -87,21 +87,24 @@ export function RoastShowcase() {
             <motion.div
               key={product.slug}
               variants={fadeIn}
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.2 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2, type: "spring", stiffness: 300 }}
             >
-              <Card className="h-full flex flex-col overflow-hidden border-2 hover:border-accent/50 hover:shadow-xl transition-all">
+              <Card className="h-full flex flex-col overflow-hidden border-2 hover:border-accent/50 hover:shadow-xl transition-all group cursor-pointer">
                 {/* Product Image */}
                 <div className="relative h-64 overflow-hidden bg-muted">
                   <Image
                     src={product.image}
                     alt={`${product.name} - café de ${product.origin}`}
                     fill
-                    className="object-cover transition-transform duration-300 hover:scale-105"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className="absolute top-4 right-4">
-                    <Badge variant="secondary" className="text-xs font-semibold">
+                  {/* Overlay gradient on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute top-4 right-4 transform group-hover:scale-110 transition-transform duration-200">
+                    <Badge variant="secondary" className="text-xs font-semibold shadow-lg">
                       {product.roastLabel}
                     </Badge>
                   </div>
@@ -167,9 +170,15 @@ export function RoastShowcase() {
                   </div>
 
                   {/* CTA */}
-                  <Button className="w-full group" size="sm">
-                    <ShoppingCart className="w-4 h-4 mr-2 transition-transform group-hover:scale-110" />
-                    Añadir al carrito
+                  <Button className="w-full group/btn relative overflow-hidden" size="sm">
+                    <motion.div
+                      className="absolute inset-0 bg-accent/20"
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileHover={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <ShoppingCart className="w-4 h-4 mr-2 transition-transform group-hover/btn:scale-110 relative z-10" />
+                    <span className="relative z-10">Añadir al carrito</span>
                   </Button>
                 </CardFooter>
               </Card>

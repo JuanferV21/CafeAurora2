@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { Coffee, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { Logo } from "@/components/Logo";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -46,14 +48,7 @@ export function Navbar() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <a
-              href="#"
-              className="flex items-center gap-2 text-lg font-semibold text-foreground group"
-              aria-label="Café Aurora - Inicio"
-            >
-              <Coffee className="w-6 h-6 text-accent transition-transform group-hover:rotate-12" />
-              <span className="font-serif text-xl">Café Aurora</span>
-            </a>
+            <Logo size="md" animated />
 
             {/* Desktop Navigation */}
             <ul className="hidden md:flex items-center gap-1">
@@ -71,24 +66,28 @@ export function Navbar() {
 
             {/* CTA Button */}
             <div className="hidden md:flex items-center gap-3">
+              <ThemeToggle />
               <Button asChild size="lg">
                 <a href="#productos">Comprar granos</a>
               </Button>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2 text-foreground hover:bg-muted rounded-md transition-colors"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
-              aria-expanded={isMobileMenuOpen}
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
+            {/* Mobile Actions */}
+            <div className="md:hidden flex items-center gap-2">
+              <ThemeToggle />
+              <button
+                className="p-2 text-foreground hover:bg-muted rounded-md transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+                aria-expanded={isMobileMenuOpen}
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
+              </button>
+            </div>
           </nav>
         </div>
       </motion.header>

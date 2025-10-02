@@ -1,6 +1,7 @@
 "use client";
 
-import { Coffee, Instagram, Facebook, Twitter, Mail } from "lucide-react";
+import { Instagram, Facebook, Twitter, Mail } from "lucide-react";
+import { Logo } from "@/components/Logo";
 
 const footerLinks = {
   producto: [
@@ -40,12 +41,9 @@ export function Footer() {
         <div className="py-16 grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand Column */}
           <div className="col-span-2">
-            <a href="#" className="inline-flex items-center gap-2 mb-4">
-              <Coffee className="w-8 h-8 text-accent" />
-              <span className="text-2xl font-serif font-bold text-foreground">
-                Café Aurora
-              </span>
-            </a>
+            <div className="mb-4">
+              <Logo size="lg" animated={false} />
+            </div>
             <p className="text-sm text-foreground/70 leading-relaxed max-w-xs mb-6">
               Café de especialidad tostado con pasión. Desde 2012, llevando
               amaneceres a cada taza.
