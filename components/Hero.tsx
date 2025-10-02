@@ -22,7 +22,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-secondary/30 via-background to-background"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-secondary/30 via-background to-background pt-20 md:pt-24"
       id="main-content"
     >
       {/* Background decoration */}
